@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC>
+<html>
+<head>
+</head>
+
+<link rel="stylesheet" href="style.css">
+
+<p class="skipnavigation"><a href="contentstart">Skip navigation</a></p>
+<header id="round">
+  <h1>Pickens County College and Career Center</h1>
+  <div>
+    <a href="Home.html">
+      <img src="images/83d54f681bb14cdfbf8cc48bc699f101.png" width="216" height="146" alt="Company Logo">
+    </a>
+  </div>
+</header>
+<nav class="sitenavigation">
+  <ul>
+    <li><a href="Home.html">Home</a></li>
+    <a href="Reports.html">Reports</a>
+
+<body class = "bodyBack">
+<H1>Clock Time</H1>
+
+
+<?php
+$servername = "localhost";
+$username = "p4cweb";
+$password = "p4cclock";
+$dbname = "p4c-clock";
+
+$stuid = $_POST["stuid"];
+
+//echo "<h1>" . $stuid . "</h1>";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+
+if($conn->connect_error){
+
+die("Connection failed: " . $conn->connect_error);
+}
+//else { echo "<p>Connected Successfully.</p>"; }
+
+
+$sql = "SELECT distinct(Name), StudentId, ProgramArea, Now() as DTime FROM Students WHERE ActiveFlag = 'Y' AND StudentId = " . $stuid;
+$result = $conn->query($sql);
+
+//echo "<p>" . $sql . "</p>";
+
+if($result->num_rows > 0){
+
+while($row = $result->fetch_assoc()){
+
+echo "<p>" . $row['Name'] . " " . $row['StudentId'] . " " . $row[ProgramArea] . " " . $row[DTime]. "</p>";
+}
+    
+}else{
+
+echo "<p>Your Id was not found. Please let your Instructor know, and Contact Your 4th Period IT Department.</p>";
+  }
+$conn->close();
+
+//$sql = "INSERT INTO TStamp ()";
+//if($conn->query($sql)=== TRUE){
+
+//echo "New Record created successfully";
+//}
+//else{
+
+//echo "Error " . $sql . "<br>" . $conn-->error;
+
+//}
+$conn->close();
+
+//echo "<p>Connection Closed</p>"
+
+?>
+
+
+</body>
+
+<script>
+
+  setTimeout(function (){window.close;}, 3000);
+
+</script>
+</html>
